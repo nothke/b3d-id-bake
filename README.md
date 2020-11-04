@@ -6,13 +6,21 @@ Blender 2.8's baking workflow overhaul has made baking id maps much more complic
 
 Install like any other blender plugin: Edit > Preferences > Add-Ons > Install.. find bake_id_map.py. Then tick it to enable it.
 
+
+
 ### Usage
 
-Select all objects you wish to bake, making sure you uv unwrap them and make sure the uvs don't overlap.
+1. Meshes with assigned materials as ids (for example, but you could also use color textures as the source) should be prepared for baking: Make sure they are UV unwrapped and that the UV islands don't overlap, as you would with standard baking.
 
-Search "Bake id map" in commands search bar and click on it.
+2. Select all objects you wish a signle id map to be baked for.
+
+3. Search "Bake id map" in commands search bar and click on it.
+
+![example](docs/example_blender.png)
 
 And that's it! The texture will be created in the same folder as your blend file, with the name of ACTIVEOBJECTNAME_id.png.
+
+![example](docs/example_folder.png)
 
 You can additionally set a custom texture size, which will cause a rebake. 512 is default.
 
