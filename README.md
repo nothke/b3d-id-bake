@@ -10,7 +10,7 @@ Blender 2.8's baking workflow overhaul has made baking id maps require much more
 
 3. Search "Bake id map" in commands search bar and click on it.
 
-![example](docs/example_blender.png)
+![example](docs/example_blender2.png)
 
 And that's it! The texture will be created in the same folder as your blend file, with the name of ACTIVEOBJECTNAME_id.png.
 
