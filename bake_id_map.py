@@ -20,6 +20,8 @@ class NOTHKE_OT_bake_id_map(bpy.types.Operator):
     bl_label = "Bake id map"
     bl_options = {'REGISTER', 'UNDO'}
 
+    tex_size: bpy.props.IntProperty(name="Texture size", default=512)
+
     def execute(self, context):
 
         original_active_object = context.view_layer.objects.active
@@ -50,7 +52,7 @@ class NOTHKE_OT_bake_id_map(bpy.types.Operator):
             layer.objects.active = None
             bpy.ops.object.select_all(action='DESELECT')
 
-        bakeSize = 256
+        bakeSize = self.tex_size
 
         #5 remember render engine and switch to CYCLES for baking
         orig_renderer = bpy.data.scenes[bpy.context.scene.name].render.engine
@@ -152,6 +154,10 @@ class NOTHKE_OT_bake_id_map(bpy.types.Operator):
         self.report({'INFO'}, "Baked id successfully and saved to " + map_path)
 
         return {'FINISHED'}
+
+        def invoke(self, context, event):
+            wm = context.window_manager
+            return wm.invoke_props_dialog(self)
 
 def menu_draw(self, context):
     layout = self.layout
