@@ -25,6 +25,8 @@ class NOTHKE_OT_bake_id_map(bpy.types.Operator):
     def execute(self, context):
 
         original_active_object = context.view_layer.objects.active
+        name = original_active_object.name
+        filename = name + "_id.png"
 
         layer = context.view_layer
                         
@@ -118,7 +120,7 @@ class NOTHKE_OT_bake_id_map(bpy.types.Operator):
         bpy.ops.object.bake(type='DIFFUSE', use_clear=True, use_selected_to_active=True) #use_selected_to_active=True
 
         folder_path = bpy.path.abspath("//")
-        map_path = folder_path + "testbake.png"
+        map_path = folder_path + filename
         bakeimage.filepath_raw =  map_path # context.scene.bakeFolder+context.scene.bakePrefix+"_color.tga"
         bakeimage.file_format = 'PNG'
         bakeimage.save()
