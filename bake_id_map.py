@@ -2,7 +2,7 @@
 
 bl_info = {
     "name": "Bake id map",
-    "description": "Swaps Y and Z axes to fix rotations for Blender hiararchies and Unity export",
+    "description": "Bakes id map to texture with a single command.",
     "author": "Nothke",
     "category": "Object",
     "blender": (2, 80, 0),
@@ -31,19 +31,8 @@ class NOTHKE_OT_bake_id_map(bpy.types.Operator):
         for obj in context.selected_objects:
             selected_objects.append(obj)
 
-            #bpy.context.view_layer.objects.active = obj
-            #dobj = bpy.ops.object.duplicate()
-            #print(dobj.name)
-            
-
         bpy.ops.object.select_all(action='DESELECT')
         
-        # debug
-        #print(" - - ")
-        #for obj in selected_objects:
-        #    print(obj.name)
-        #    print(obj.rotation_euler)
-
         layer.objects.active = None
         duplicated_objects = []
 
@@ -55,14 +44,11 @@ class NOTHKE_OT_bake_id_map(bpy.types.Operator):
             dobj = context.object
             duplicated_objects.append(dobj)
 
-            print(dobj.name)
+            #print(dobj.name)
 
             # Deselect this object
             layer.objects.active = None
             bpy.ops.object.select_all(action='DESELECT')
-
-
-
 
         bakeSize = 256
 
