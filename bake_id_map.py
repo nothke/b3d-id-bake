@@ -20,7 +20,8 @@ class NOTHKE_OT_bake_id_map(bpy.types.Operator):
     bl_label = "Bake id map"
     bl_options = {'REGISTER', 'UNDO'}
 
-    tex_size: bpy.props.IntProperty(name="Texture size", default=512)
+    tex_size: bpy.props.IntProperty(name="Texture Size", default=512)
+    ray_distance: bpy.props.FloatProperty(name="Ray Distance", default=0.1)
 
     def execute(self, context):
 
@@ -117,7 +118,11 @@ class NOTHKE_OT_bake_id_map(bpy.types.Operator):
 
 
         # BAKE!
-        bpy.ops.object.bake(type='DIFFUSE', use_clear=True, use_selected_to_active=True) #use_selected_to_active=True
+        bpy.ops.object.bake(
+            type = 'DIFFUSE', 
+            use_clear = True, 
+            use_selected_to_active = True,
+            cage_extrusion = self.ray_distance) # changed in 2.9 to max_ray_distance?
 
         folder_path = bpy.path.abspath("//")
         map_path = folder_path + filename
